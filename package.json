@@ -1,0 +1,26 @@
+{
+  "name": "homey.ink-docker",
+  "version": "0.0.1",
+  "description": "Homey.ink in a docker container",
+  "author": "Julius van Dis <julius.van.dis@flock.community>",
+  "main": "start.js",
+  "scripts": {
+    "postinstall": "[ -d homey.ink ] || git clone https://github.com/athombv/homey.ink.git",
+    "start": "concurrently --kill-others \"npm:homey-ink\" \"npm:proxy\"",
+    "proxy": "node start.js",
+    "homey-ink": "serve -p 5000"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "esm": "^3.2.25",
+    "express": "^4.16.1",
+    "express-http-proxy": "^1.5.1",
+    "serve": "^11.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "concurrently": "^4.1.0"
+  }
+}
